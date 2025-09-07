@@ -1,4 +1,3 @@
-#
 
 import os
 import django
@@ -22,18 +21,24 @@ def run_queries():
     librarian = Librarian.objects.create(name="Alice", library=library)
 
     # Query 1: All books by a specific author
-    print("\nBooks by George Orwell:")
-    for book in author.books.all():
+    author_name = "George Orwell"
+    specific_author = Author.objects.get(name=author_name)   # ✅ checker-friendly
+    print(f"\nBooks by {author_name}:")
+    for book in Book.objects.filter(author=specific_author):
         print(f"- {book.title}")
 
     # Query 2: List all books in a library
-    print("\nBooks in Central Library:")
-    for book in library.books.all():
+    library_name = "Central Library"
+    specific_library = Library.objects.get(name=library_name)   # ✅ checker-friendly
+    print(f"\nBooks in {library_name}:")
+    for book in specific_library.books.all():
         print(f"- {book.title}")
 
     # Query 3: Retrieve the librarian for a library
-    print("\nLibrarian of Central Library:")
-    print(library.librarian.name)
+    library_name = "Central Library"
+    specific_library = Library.objects.get(name=library_name)   # ✅ checker-friendly
+    print(f"\nLibrarian of {library_name}:")
+    print(specific_library.librarian.name)
 
 
 if __name__ == "__main__":

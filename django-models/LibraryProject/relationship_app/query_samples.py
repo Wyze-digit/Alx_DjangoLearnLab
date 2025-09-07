@@ -52,5 +52,11 @@ def run_queries():
     print(specific_library.librarian.name)
 
 
+    # Query 3: Retrieve the librarian for a library
+    print("\nLibrarian of Central Library:")
+    librarian_instance = Librarian.objects.get(library=library_instance)
+    print(librarian_instance.name)
+
+
 if __name__ == "__main__":
     run_queries()

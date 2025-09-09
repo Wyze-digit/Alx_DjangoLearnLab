@@ -15,6 +15,12 @@ def get_library_by_name(library_name):
 
 
 
+from .models import Author, Book
+
+def get_books_by_author(author_name):
+    author = Author.objects.get(name=author_name)
+    return Book.objects.filter(author=author)
+
 
 def run_queries():
     # Create sample data

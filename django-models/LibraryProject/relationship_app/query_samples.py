@@ -8,6 +8,13 @@ django.setup()
 
 from relationship_app.models import Author, Book, Library, Librarian
 
+from .models import Library
+
+def get_library_by_name(library_name):
+    return Library.objects.get(name=library_name)
+
+
+
 
 def run_queries():
     # Create sample data

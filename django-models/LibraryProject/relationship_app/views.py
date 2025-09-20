@@ -11,7 +11,9 @@ def list_books(request):
 
 # others
 from django.shortcuts import render, get_object_or_404
-from .models import Library
+from .models import Library 
+
+from django.views.generic.detail import DetailView
 
 def library_detail(request, library_id):
     library = get_object_or_404(Library, id=library_id)

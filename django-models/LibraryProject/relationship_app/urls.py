@@ -1,0 +1,15 @@
+# this file is created to solve the url viewing issues. 
+# 
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    # Function-Based Views (FBV)
+    path("books/", views.list_books, name="list_books"),
+    path("libraries/<int:pk>/", views.library_detail, name="library_detail"),
+
+    # Class-Based Views (CBV)
+    path("books-class/", views.BookListView.as_view(), name="book_list_class"),
+    path("libraries-class/<int:pk>/", views.LibraryDetailView.as_view(), name="library_detail_class"),
+]

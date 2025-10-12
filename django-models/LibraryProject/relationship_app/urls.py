@@ -2,6 +2,7 @@
 # 
 
 from django.urls import path
+from django.contrib.auth.views import LoginView, LogoutView
 from . import views
 from .views import list_books 
 
@@ -25,3 +26,15 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('', views.home_view, name='home'),  # optional homepage
 ]
+
+urlpatterns = [
+    # Registration view
+    path('register/', views.register, name='register'),
+
+    # Login view using Django built-in authentication
+    path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
+
+    # Logout view using Django built-in authentication
+    path('logout/', LogoutView.as_view(template_name='relationship_app/logout.html'), name='logout'),
+]
+

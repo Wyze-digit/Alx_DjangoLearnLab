@@ -15,3 +15,13 @@ urlpatterns = [
     path("books-class/", views.BookListView.as_view(), name="book_list_class"),
     path("libraries-class/<int:pk>/", views.LibraryDetailView.as_view(), name="library_detail_class"),
 ]
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('register/', views.register_view, name='register'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('', views.home_view, name='home'),  # optional homepage
+]

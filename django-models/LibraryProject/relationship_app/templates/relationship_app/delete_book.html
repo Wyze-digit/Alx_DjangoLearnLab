@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Book</title>
+</head>
+<body>
+    <h1>Delete Book: {{ book.title }}</h1>
+
+    {% if user.has_perm('relationship_app.can_delete_book') %}
+        <p>Are you sure you want to delete <strong>{{ book.title }}</strong> by {{ book.author }}?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Yes, Delete</button>
+        </form>
+    {% else %}
+        <p style="color: red;">You do not have permission to delete this book.</p>
+    {% endif %}
+
+    <br>
+    <a href="{% url 'book_list' %}">Back to Book List</a>
+</body>
+</html>

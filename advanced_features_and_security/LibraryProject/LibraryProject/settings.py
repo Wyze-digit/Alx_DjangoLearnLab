@@ -233,4 +233,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Authentication redirects
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login' 
+
+# ---------------------------------
+# Custom User Model Configuration
+# ---------------------------------
+AUTH_USER_MODEL = 'relationship_app.CustomUser'
+
+# ---------------------------------
+# Media Files Configuration (for profile photos)
+# ---------------------------------
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import permission_required, login_required
 from django.contrib import messages
 from django import forms 
 from .models import Book
+from .forms import ExampleForm
 
 @permission_required('bookshelf.can_view', raise_exception=True)
 def book_list(request):

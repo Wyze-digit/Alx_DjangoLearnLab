@@ -238,7 +238,8 @@ LOGOUT_REDIRECT_URL = 'login'
 # ---------------------------------
 # Custom User Model Configuration
 # ---------------------------------
-AUTH_USER_MODEL = 'relationship_app.CustomUser'
+# AUTH_USER_MODEL = 'relationship_app.CustomUser'
+AUTH_USER_MODEL = 'bookshelf.CustomUser'
 
 # ---------------------------------
 # Media Files Configuration (for profile photos)

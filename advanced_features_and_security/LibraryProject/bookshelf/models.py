@@ -22,6 +22,9 @@ class Book(models.Model):
             ("can_change_book", "Can edit book"),
             ("can_delete_book", "Can delete book"),
             ("can_create", "can create new records"),
+            ("can_edit", "Can edit book records"),
+            ("can_delete", "Can delete book records"),
+            ("can_view", "Can view book records"),
         ]
 
 # -------------------------

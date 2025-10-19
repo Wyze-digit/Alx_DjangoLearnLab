@@ -129,6 +129,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 # LOGOUT_REDIRECT_URL = 'login' 
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -142,7 +143,7 @@ SECRET_KEY = 'django-insecure-+4__^9bmyyq2$wywkq)1x&!f@_*#cw-r6w087*i=_$&v5dypan
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'localhost']  # Add '127.0.0.1' or your domain/IP if needed
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'yourdomain.com']  # Add '127.0.0.1' or your domain/IP if needed
 
 
 # Application definition
@@ -153,7 +154,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     # Custom apps
     'bookshelf',
     'relationship_app',
@@ -246,3 +246,34 @@ AUTH_USER_MODEL = 'bookshelf.CustomUser'
 # ---------------------------------
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# -----------------------------
+# SECURITY ENHANCEMENTS
+# -----------------------------
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+
+# Enforce HTTPS cookies (set True in production)
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+# HSTS (HTTP Strict Transport Security)
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# Optional: CSP Headers (if using django-csp)
+# CSP_DEFAULT_SRC = ("'self'",)
+# CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
+# CSP_SCRIPT_SRC = ("'self'",)
+
+# -----------------------------
+# STATIC & MEDIA FILES
+# -----------------------------
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Default user model
+AUTH_USER_MODEL = 'bookshelf.CustomUser'

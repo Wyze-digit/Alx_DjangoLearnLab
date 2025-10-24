@@ -9,7 +9,7 @@ from rest_framework import viewsets
 
 
 class BookList(generics.ListAPIView):
-    """API view to list all books in the database."""
+#    """API view to list all books in the database."""
     
     queryset = Book.objects.all()
     serializer_class = BookSerializer

@@ -16,13 +16,5 @@ class BookList(generics.ListAPIView):
 
 class BookViewSet(viewsets.ModelViewSet):
 
-# """
-# A ViewSet for viewing and editing Book instances.
-# Supports:
-# - GET (list and retrieve)
-# - POST (create)
-# - PUT/PATCH (update)
-# - DELETE (destroy)
-# """
-queryset = Book.objects.all()
+    queryset = Book.objects.all()
     serializer_class = BookSerializer

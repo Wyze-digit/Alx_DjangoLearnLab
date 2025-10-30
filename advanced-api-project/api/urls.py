@@ -1,4 +1,3 @@
-# api/urls.py
 from django.urls import path
 from . import views
 
@@ -6,9 +5,15 @@ from . import views
 app_name = 'api'
 
 urlpatterns = [
-    # Endpoint for listing all books and creating a new one
-    path('books/', views.BookListView.as_view(), name='book-list'),
-    # Endpoint for retrieving, updating, or deleting a single book by its primary key
-    path('books/<int:pk>/', views.BookDetailView.as_view(), name='book-detail'),
-]
+    # Endpoint for listing all Books
+    path('books/', views.BookListView.as_view(), name='book-list'), 
+    # Endpoint for retrieving a single book by ID 
+    path('books/<int:pk>/', views.BookDetailView.as_view(), name='book-detail'), 
+    # Endpoint for creating a new book
+    path('books/create/', views.BookCreateView.as_view(), name='book-create'),
+    # Endpoint for updating an existing book
+    path('books/<int:pk>/update/', views.BookUpdateView.as_view(), name='book-update'),
+    # Endpoint for deleting a book
+    path('books/<int:pk>/delete/', views.BookDeleteView.as_view(), name='book-delete'), 
+    ]
 

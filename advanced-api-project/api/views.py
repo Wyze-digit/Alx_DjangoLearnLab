@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 # Create your views here.
 # api/views.py
 from rest_framework import generics, permissions

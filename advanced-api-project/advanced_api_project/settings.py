@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework', # django REST framework 
-    'api',            # our app name
+    'api',            # our app name 
+    'django_filters',  # filter framework
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,11 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
-    ]
+    ], 
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend', 
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter', 
+    ],
 }
 

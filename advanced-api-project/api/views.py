@@ -2,9 +2,12 @@ from django.shortcuts import render
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 # Create your views here.
 # api/views.py
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, filters
 from .models import Book
 from .serializers import BookSerializer
+from .filters import BookFilter
+from django_filters.rest_framework import DjangoFilterBackend 
+
 
 class BookListView(generics.ListAPIView):
     """
@@ -13,7 +16,21 @@ class BookListView(generics.ListAPIView):
     """
     queryset = Book.objects.all().order_by('-id')
     serializer_class = BookSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly] 
+
+    # DjangoFilterBackend configuration
+    filterset_class = BookFilter 
+
+    # Configure filter backends
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter] 
+
+    # SearchFilter configuration
+    search_fields = ['title', 'author', 'description'] 
+
+    # OrderingFilter configuration
+    ordering_fields = ['title', 'author', 'publication_year', 'created_at', 'updated_at']
+    ordering = ['-created_at']  # Default ordering 
+
 
 class BookDetailView(generics.RetrieveAPIView):
     """
@@ -22,7 +39,8 @@ class BookDetailView(generics.RetrieveAPIView):
     """
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly] 
+    
 
 class BookCreateView(generics.CreateAPIView):
     """

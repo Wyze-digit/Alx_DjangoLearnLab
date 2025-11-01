@@ -24,6 +24,20 @@ def post_detail(request, slug):
     context = {'post': post}
     return render(request, 'blog/post_detail.html', context)
 
+def category_posts(request, slug):
+    """View to display posts by category"""
+    category = get_object_or_404(Category, slug=slug)
+    posts = Post.objects.filter(
+        status='published', 
+        categories__category=category
+    ).select_related('author')
+    
+    context = {
+        'category': category,
+        'posts': posts
+    }
+    return render(request, 'blog/category_posts.html', context)
+
 @login_required
 def post_create(request):
     """Create new post (placeholder for now)"""

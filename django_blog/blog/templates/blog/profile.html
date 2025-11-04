@@ -1,0 +1,63 @@
+<!-- blog/templates/blog/profile.html -->
+{% extends 'blog/base.html' %}
+
+{% block title %}Profile - Django Blog{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        <h2>Your Profile</h2>
+        <p class="profile-subtitle">Manage your account settings</p>
+    </div>
+    
+    <div class="profile-form">
+        <form method="post" class="profile-form-content">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                <div class="error-list">
+                    {% for error in field.errors %}
+                    <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% if field.help_text %}
+                <small class="help-text">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+                <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+    
+    <div class="profile-stats">
+        <h3>Account Information</h3>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-label">Username:</span>
+                <span class="stat-value">{{ user.username }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Email:</span>
+                <span class="stat-value">{{ user.email }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Member since:</span>
+                <span class="stat-value">{{ user.date_joined|date:"F d, Y" }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Last login:</span>
+                <span class="stat-value">{{ user.last_login|date:"F d, Y g:i A" }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

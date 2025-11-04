@@ -13,6 +13,7 @@
 <body>
     <!-- Navigation -->
     <header class="main-header">
+        <!-- Update the navigation section in base.html -->
         <nav class="navbar">
             <div class="nav-brand">
                 <a href="{% url 'home' %}">
@@ -22,18 +23,9 @@
             <ul class="nav-menu">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'post-list' %}">All Posts</a></li>
-                <li class="dropdown">
-                    <a href="#">Categories ▾</a>
-                    <ul class="dropdown-menu">
-                        {% for category in all_categories %}
-                            <li><a href="{% url 'category-posts' category.slug %}">{{ category.name }}</a></li>
-                        {% empty %}
-                            <li><a href="#">No categories yet</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
+                
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'post-create' %}" class="btn-new-post">✏️ New Post</a></li>
+                    <li><a href="{% url 'post-create' %}">✏️ New Post</a></li>
                     <li class="user-menu">
                         <a href="#">👤 {{ user.username }} ▾</a>
                         <ul class="dropdown-menu">
